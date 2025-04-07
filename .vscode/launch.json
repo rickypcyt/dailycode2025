@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/ricky/coding/dailycode/memoriaenc",
-      "program": "/home/ricky/coding/dailycode/memoriaenc/main",
+      "cwd": "/home/ricky/coding/dailycode/MemoryC",
+      "program": "/home/ricky/coding/dailycode/MemoryC/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
