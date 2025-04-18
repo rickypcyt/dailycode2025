@@ -23,7 +23,7 @@ function love.load()
     }
 
     vel_y = 0
-    grav = 0.5
+    grav = 9.8 * 100
     -- primero va el ancho luego el alto 800x600
     love.window.setMode(w, h, { resizable = false })
     love.window.setTitle("Círculo Centrado")
@@ -38,6 +38,9 @@ function love.draw()
 end
 
 function love.update(dt)
-    vel_y = vel_y + grav
-    circle.y = math.min(circle.y + vel_y, border.bot) -- Limita movimiento
+    vel_y = vel_y + grav * dt
+    circle.y = math.min(circle.y + vel_y * dt, border.bot) -- Limita movimiento
+    if love.keyboard.isDown("w") then
+        circle.y = circle.y
+    end
 end
