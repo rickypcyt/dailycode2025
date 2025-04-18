@@ -1,6 +1,7 @@
 function love.load()
-    h = 800 -- Ancho de la ventana
-    w = 600 -- Alto de la ventana
+    -- 800 es ancho y 600 es alto
+    w = 1920
+    h = 1080
 
     circle = {
         x = 0,
@@ -13,11 +14,8 @@ function love.load()
         left = circle.radius,
         right = h - circle.radius,
         top = circle.radius,
-        bot = w - circle.radius, -- Usa el alto correcto (w)
+        bot = (h - circle.radius) - h / 2,
     }
-
-    -- Calcula el borde inferior en coordenadas traducidas (centro como origen)
-    border.translated_bot = border.bot - w / 2 -- 550 - 300 = 250
 
     color = {
         black = { 0, 0, 0 },
@@ -26,15 +24,15 @@ function love.load()
 
     vel_y = 0
     grav = 0.5
-
-    love.window.setMode(h, w, { resizable = false })
+    -- primero va el ancho luego el alto 800x600
+    love.window.setMode(w, h, { resizable = false })
     love.window.setTitle("Círculo Centrado")
 end
 
 function love.draw()
     -- Física (debería ir en love.update, pero se mantiene aquí para simplificar)
     vel_y = vel_y + grav
-    circle.y = math.min(circle.y + vel_y, border.translated_bot) -- Limita movimiento
+    circle.y = math.min(circle.y + vel_y, border.bot) -- Limita movimiento
 
     -- Dibujado
     love.graphics.clear(color.black)
@@ -43,7 +41,7 @@ function love.draw()
     love.graphics.circle("fill", circle.x, circle.y, circle.radius)
 
     -- Detección de colisión
-    if circle.y >= border.translated_bot then
+    if circle.y >= border.bot then
         vel_y = 0 -- Detener movimiento
     end
 end
