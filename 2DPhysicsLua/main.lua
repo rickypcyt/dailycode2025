@@ -30,18 +30,14 @@ function love.load()
 end
 
 function love.draw()
-    -- Física (debería ir en love.update, pero se mantiene aquí para simplificar)
-    vel_y = vel_y + grav
-    circle.y = math.min(circle.y + vel_y, border.bot) -- Limita movimiento
-
     -- Dibujado
     love.graphics.clear(color.black)
     love.graphics.translate(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
     love.graphics.setColor(color.white)
     love.graphics.circle("fill", circle.x, circle.y, circle.radius)
+end
 
-    -- Detección de colisión
-    if circle.y >= border.bot then
-        vel_y = 0 -- Detener movimiento
-    end
+function love.update(dt)
+    vel_y = vel_y + grav
+    circle.y = math.min(circle.y + vel_y, border.bot) -- Limita movimiento
 end
