@@ -1,7 +1,7 @@
 function love.load()
     -- 800 es ancho y 600 es alto
-    w = 1920
-    h = 1080
+    w = 800
+    h = 600
 
     circle = {
         x = 0,
@@ -11,11 +11,12 @@ function love.load()
 
     -- Calcula bordes en coordenadas de pantalla
     border = {
-        left = circle.radius,
-        right = h - circle.radius,
-        top = circle.radius,
-        bot = (h - circle.radius) - h / 2,
+        left = -(w / 2) + circle.radius, -- -910
+        right = (w / 2) - circle.radius, --  910
+        top = -(h / 2) + circle.radius, -- -490
+        bot = (h / 2) - circle.radius, --  490    }
     }
+    print(border.right)
 
     color = {
         black = { 0, 0, 0 },
@@ -23,6 +24,7 @@ function love.load()
     }
 
     vel_y = 0
+    vel_x = 0
     grav = 9.8 * 100
     -- primero va el ancho luego el alto 800x600
     love.window.setMode(w, h, { resizable = false })
@@ -38,9 +40,24 @@ function love.draw()
 end
 
 function love.update(dt)
-    vel_y = vel_y + grav * dt
-    circle.y = math.min(circle.y + vel_y * dt, border.bot) -- Limita movimiento
-    if love.keyboard.isDown("w") then
-        circle.y = circle.y
+    --vel_y = vel_y + grav * dt -- gravedad
+
+    circle.x = math.max(math.min(circle.x, border.right), border.left)
+    circle.y = math.max(math.min(circle.y, border.bot), border.top)
+
+    if love.keyboard.isDown("w") and circle.y > border.top then
+        circle.y = circle.y - 10
+    end
+    if love.keyboard.isDown("a") and circle.x > border.left then
+        circle.x = circle.x - 10
+    end
+    if love.keyboard.isDown("s") and circle.y < border.bot then
+        circle.y = circle.y + 10
+    end
+    if love.keyboard.isDown("d") and circle.x < border.right then
+        circle.x = circle.x + 10
+    end
+    if love.keyboard.isDown("escape") then
+        os.exit()
     end
 end
