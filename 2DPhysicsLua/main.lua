@@ -1,3 +1,5 @@
+local imgui = require("imgui") -- Asegurate de tener love-imgui en tu proyecto
+
 function love.load()
     -- 800 es ancho y 600 es alto
     w = 800
@@ -32,6 +34,11 @@ function love.load()
 end
 
 function love.draw()
+    imgui.Begin("Debug FPS")
+    imgui.Text("FPS: " .. love.timer.getFPS())
+    imgui.End()
+
+    imgui.Render()
     -- Dibujado
     love.graphics.clear(color.black)
     love.graphics.translate(love.graphics.getWidth() / 2, love.graphics.getHeight() / 2)
@@ -40,7 +47,8 @@ function love.draw()
 end
 
 function love.update(dt)
-    --vel_y = vel_y + grav * dt -- gravedad
+    imgui.NewFrame()
+    vel_y = vel_y + grav * dt -- gravedad
 
     circle.x = math.max(math.min(circle.x, border.right), border.left)
     circle.y = math.max(math.min(circle.y, border.bot), border.top)
