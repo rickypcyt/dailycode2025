@@ -5,10 +5,10 @@ print(posiciones)
 
 #Quiero hacer que pueda encontrar la posicion de tal valor tipo si yo digo que x es igual a 4 deberia de decirme que esta en la posicion 3 o sea empezando desde 0 el contador o 4 si se empieza desde uno.
 
-x = int(input("Posicion del array:"))
+x = int(input("posicion x del array:"))
 
 if x > 0 and x <= len(arr):
-    print (("En la posicion x esta el num:"),{arr[x]})
+    print (("En la posicion x esta el num:"),arr[x])
 
 #Tambien quiero que me imprima el array sin ordenar y el ordenado.
 #Vamos a hacerlo con insertionsort que es bien cool lo que hace es que va iterando y va moviendo elementos segun los anteriores digamos tienes 3421 ve si 3 es mayor a 4 y ve que no entonces hace nada de ahi 4 y 2, el dos es menos que 4 asi que lo mueve a la izquierda, como lo mueve a la izquierda entonces ahora compara 3 y 2, 2 es menor que 3 asi que lo mueve a la izquierda. Se empieza a veces por el 2do elemento porque el primero no teine nada a la izquierda. 
@@ -33,3 +33,5 @@ def insertion_sort(arr):
 # Ejemplo de uso:
 arr_ordenado = insertion_sort(arr)  # Llamamos a la función de ordenación
 print(arr_ordenado)  # Imprime el array ordenado
+
+
