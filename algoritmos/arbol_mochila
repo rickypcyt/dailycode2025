@@ -1,0 +1,29 @@
+digraph {
+	rankdir=TB
+	A [label="Nodo 0
+(p=0, v=0)"]
+	B [label="Nodo 1
+no obj0
+(p=0, v=0)"]
+	C [label="Nodo 1
+sí obj0
+(p=2, v=3)"]
+	A -> B [label="No obj0"]
+	A -> C [label="Sí obj0"]
+	D [label="Nodo 2
+no obj0, no obj1
+(p=0, v=0)"]
+	E [label="Nodo 2
+no obj0, sí obj1
+(p=3, v=4)"]
+	F [label="Nodo 2
+sí obj0, no obj1
+(p=2, v=3)"]
+	G [label="Nodo 2
+sí obj0, sí obj1
+(p=5, v=7)"]
+	B -> D [label="No obj1"]
+	B -> E [label="Sí obj1"]
+	C -> F [label="No obj1"]
+	C -> G [label="Sí obj1"]
+}
