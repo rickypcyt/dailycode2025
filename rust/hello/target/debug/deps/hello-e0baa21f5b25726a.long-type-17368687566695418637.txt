@@ -1,2 +1,0 @@
-fn() -> alloc::string::String {sum_numbers}
-fn() -> std::string::String {sum_numbers}
