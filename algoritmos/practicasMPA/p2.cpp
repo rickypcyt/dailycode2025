@@ -29,10 +29,18 @@ int main() {
     cout << "Introduce la semilla del arreglo random: ";
     cin >> seed;
     srand(seed);
-    int aleatorio = rand();
-    cout << "Numero aleatorio: " << aleatorio << endl;
 
-    vector<int> vectorRandom(n);
-    for (int i = 1; i > n;) {
+    int array[n];
+
+    for (int i = 0; i < n; i++) {
+        array[i] = 1 + rand() % 100;
     }
+
+    for (int i = 0; i < n; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+
+    // int aleatorio = rand();
+    // cout << "Numero aleatorio: " << aleatorio << endl;
 }
