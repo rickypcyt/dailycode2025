@@ -1,0 +1,32 @@
+// Código comentado que fue removido del programa principal:
+
+// SUMAR DOS NÚMEROS
+int x = 3;
+int y = 3;
+int suma = x + y;
+cout << suma << endl;
+
+// ARRAY ESTÁTICO
+int array[] = {1, 2, 3, 4, 5};
+cout << "Todo el array:" << endl;
+for (int i = 0; i < 5; i++) {
+    cout << array[i] << " " << "\n";
+}
+cout << "Elementos del array:" << endl;
+int elementos_array = sizeof(array) / sizeof(array[0]);
+cout << elementos_array << endl;
+
+// Código alternativo para contar sin función
+int pos = -1; // numero no valido porque es antes de 0
+for (int i = 0; i < n; i++) {
+    if (V[i] == x) {
+        pos = i;
+        break;
+    }
+}
+
+if (pos != -1) {
+    std::cout << "El número " << x << " está en la posición " << pos << std::endl;
+} else {
+    std::cout << "El número " << x << " no está en el vector" << std::endl;
+}

@@ -1,0 +1,6 @@
+rand y srand no es lo mismo.
+
+srand sirve para inicializar el generador de números pseudoaleatorios estableciendo una "semilla" (seed).
+
+rand es la función que genera y devuelve un número pseudoaleatorio entero cada vez que la llamas. 
+

@@ -2,121 +2,95 @@
 #include <vector>
 using namespace std;
 
-int Contar(std::vector<int> &vec, int n, int x) {
-    int nveces = 0;
-    for (int i = 0; i < n; i++) {
-        if (vec[i] == x) {
-            nveces = nveces + 1;
+int contarOcurrencias(vector<int> &arreglo, int tamaño, int numero) {
+    int numeroDeVeces = 0;
+    for (int i = 0; i < tamaño; i++) {
+        if (arreglo[i] == numero) {
+            numeroDeVeces++;
         }
     }
-    return nveces;
+    return numeroDeVeces;
 }
 
 int main() {
-    /*SUMAR DOS NUMS
-    int x = 3;
-    int y = 3;
-    int suma = x + y;
-    cout << suma << endl;*/
+    // Crear arreglo dinámico
+    int tamaño;
+    cout << "Introduce el tamaño del arreglo: ";
+    cin >> tamaño;
 
-    /* ARRAY ESTATICO
-    int array[] = {1, 2, 3, 4, 5};
-    cout << "Todo el array:" << endl;
-    for (int i = 0; i < 5; i++) {
-        cout << array[i] << " " << "\n";
+    vector<int> arregloOriginal(tamaño);
+
+    // Llenar arreglo original con números del 1 hasta tamaño
+    for (int i = 0; i < tamaño; i++) {
+        arregloOriginal[i] = i + 1;
     }
 
-    cout << "Elementos del array:" << endl;
-    int elementos_array = sizeof(array) / sizeof(array[0]);
-    cout << elementos_array << endl;
-    */
-
-    // Array dinamico
-    int n;
-    cout << "Introduce tamano n del array:" << endl;
-    cin >> n;
-
-    vector<int> V(n);
-    // anadir un num desde 0 hasta antes de n o sea de 0 a 9 si n es 10
-    for (int i = 0; i < n; i++) {
-        V[i] = i + 1;
-    }
-
-    cout << "Array OG:" << endl;
-    for (int i = 0; i < n; i++) {
-        cout << V[i] << " ";
+    cout << "Arreglo Original: ";
+    for (int i = 0; i < tamaño; i++) {
+        cout << arregloOriginal[i] << " ";
     }
     cout << endl;
 
-    int x;
-    cout << "Buscar numero x en array:" << endl;
-    cin >> x;
+    int numeroBuscado;
+    cout << "Introduce el número a buscar en el arreglo: ";
+    cin >> numeroBuscado;
     cout << endl;
 
-    // Contar sin funcion
-    //  int pos = -1; // numero no valido porque es antes de 0
-
-    /*for (int i = 0; i < n; i++) {
-        if (V[i] == x) {
-            pos = i;
-            break;
-        }
-    }*/
-
-    /*if (pos != -1) {
-        std::cout << "El número " << x << " está en la posición " << pos << std::endl;
-    } else {
-        std::cout << "El número " << x << " no está en el vector" << std::endl;
-    }*/
-
-    vector<int> Vpeor(n);
-    for (int i = 0; i < n; i++) {
-        Vpeor[i] = x;
+    // Caso peor: todos los elementos son el número buscado
+    vector<int> arregloCasoPeor(tamaño);
+    for (int i = 0; i < tamaño; i++) {
+        arregloCasoPeor[i] = numeroBuscado;
     }
 
-    cout << "Array Peor:" << endl;
-    for (int i = 0; i < n; i++) {
-        cout << Vpeor[i] << " ";
+    cout << "Arreglo Caso Peor: ";
+    for (int i = 0; i < tamaño; i++) {
+        cout << arregloCasoPeor[i] << " ";
     }
     cout << endl;
 
-    int VpeorEle = Contar(Vpeor, n, x);
-
-    cout << "En el Array Peor aparece " << VpeorEle << " veces" << endl;
-    cout << endl;
-    vector<int> Vmejor(n);
-    for (int i = 0; i < n; i++) {
-        if (V[i] != x) {
-            Vmejor[i] = i + 1;
-        }
-    }
-
-    cout << "Array Mejor:" << endl;
-    for (int i = 0; i < n; i++) {
-        cout << Vmejor[i] << " ";
-    }
-
-    int VmejorEle = Contar(Vmejor, n, x);
-
-    cout << "En el Array Mejor aparece " << VmejorEle << " veces" << endl;
+    int ocurrenciasCasoPeor = contarOcurrencias(arregloCasoPeor, tamaño, numeroBuscado);
+    cout << "En el Arreglo Caso Peor aparece " << ocurrenciasCasoPeor << " veces" << endl;
     cout << endl;
 
-    vector<int> Vcualq(n);
-    for (int i = 0; i < n; i++) {
-        if (V[i] <= n / 2) {
-            Vcualq[i] = x;
+    // Caso mejor: ningún elemento es el número buscado
+    vector<int> arregloCasoMejor(tamaño);
+    for (int i = 0; i < tamaño; i++) {
+        if (arregloOriginal[i] != numeroBuscado) {
+            arregloCasoMejor[i] = i + 1;
         } else {
-            Vcualq[i] = i + 1;
+            arregloCasoMejor[i] = (numeroBuscado == 1) ? 2 : 1; // Evitar el número buscado
         }
     }
 
-    cout << "Array cualquier hvda:" << endl;
-    for (int i = 0; i < n; i++) {
-        cout << Vcualq[i] << " ";
+    cout << "Arreglo Caso Mejor: ";
+    for (int i = 0; i < tamaño; i++) {
+        cout << arregloCasoMejor[i] << " ";
     }
-    int VcualqEle = Contar(Vcualq, n, x);
-
-    cout << "En el Array Mejor aparece " << VcualqEle << " veces" << endl;
     cout << endl;
+
+    int ocurrenciasCasoMejor = contarOcurrencias(arregloCasoMejor, tamaño, numeroBuscado);
+    cout << "En el Arreglo Caso Mejor aparece " << ocurrenciasCasoMejor << " veces" << endl;
+    cout << endl;
+
+    // Caso promedio: la mitad de los elementos son el número buscado
+    vector<int> arregloCasoPromedio(tamaño);
+    for (int i = 0; i < tamaño; i++) {
+        if (i < tamaño / 2) {
+            arregloCasoPromedio[i] = numeroBuscado;
+        } else {
+            arregloCasoPromedio[i] = i + 1;
+        }
+    }
+
+    cout << "Arreglo Caso Promedio: ";
+    for (int i = 0; i < tamaño; i++) {
+        cout << arregloCasoPromedio[i] << " ";
+    }
+    cout << endl;
+
+    int ocurrenciasCasoPromedio = contarOcurrencias(arregloCasoPromedio, tamaño, numeroBuscado);
+    cout << "En el Arreglo Caso Promedio aparece " << ocurrenciasCasoPromedio << " veces" << endl;
+    cout << endl;
+
     return 0;
 }
